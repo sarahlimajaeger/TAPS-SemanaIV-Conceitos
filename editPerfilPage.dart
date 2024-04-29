@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:io';
 
 import 'package:carteira_saude/model/usuario/usuario.dart';
@@ -135,6 +136,36 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
     );
   }
 
+  //Método para construir os botões do perfil
+  Widget _botoes({
+    required VoidCallback onPressed,
+    required String label,
+    required IconData icon,
+  }) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        primary: botaoColor,
+        onPrimary: textoBotao,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon),
+          SizedBox(width: 8.0),
+          Text(
+            label,
+            style: TextStyle(fontSize: 16.0),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,222 +186,174 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(15),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: fundoColor, borderRadius: BorderRadius.circular(25)),
-                child: Column(
-                  children: [
-                    Padding(padding: const EdgeInsets.all(8.0)),
-                    Text(
-                      "Informações básicas",
-                      style: TextStyle(
-                        color: tituloColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['sexo']!,
-                      labelText: "Sexo:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['estadoCivil']!,
-                      labelText: "Estado Civil:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['genero']!,
-                      labelText: "Gênero:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['endereco']!,
-                      labelText: "Endereço:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['cidade']!,
-                      labelText: "Cidade:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['uf']!,
-                      labelText: "UF:",
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 25),
-                    ),
-                    Text(
-                      "Documentos",
-                      style: TextStyle(
-                        color: tituloColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['rg']!,
-                      labelText: "RG:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['cns']!,
-                      labelText: "CNS:",
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 25),
-                    ),
-                    Text(
-                      "Saúde",
-                      style: TextStyle(
-                        color: tituloColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['tipoSang']!,
-                      labelText: "Tipo Sanguíneo:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['ativFisica']!,
-                      labelText: "Atividade física:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['dieta']!,
-                      labelText: "Tipo de dieta:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['fumo']!,
-                      labelText: "Fumo:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['cirurgias']!,
-                      labelText: "Cirurgias:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['remedio']!,
-                      labelText: "Remédios:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['doenca']!,
-                      labelText: "Doenças:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['alergia']!,
-                      labelText: "Alergias:",
-                    ),
-                    _textCamposPerfil(
-                      controller: _controllers['medico']!,
-                      labelText: "Médicos responsáveis:",
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 50),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            _limpar();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: botaoColor, // Cor de fundo do botão
-                            onPrimary: textoBotao, // Cor do texto do botão
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 16), // Ajuste o tamanho do botão aqui
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  25.0), // Borda arredondada
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.keyboard_return),
-                              SizedBox(
-                                width: 8.0,
-                              ),
-                              Text(
-                                "Cancelar",
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                ),
-                              ),
-                            ],
-                          ),
+                padding: const EdgeInsets.all(15),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: fundoColor,
+                      borderRadius: BorderRadius.circular(25)),
+                  child: Column(
+                    children: [
+                      Padding(padding: const EdgeInsets.all(8.0)),
+                      Text(
+                        "Informações básicas",
+                        style: TextStyle(
+                          color: tituloColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 40),
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['sexo']!,
+                        labelText: "Sexo:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['estadoCivil']!,
+                        labelText: "Estado Civil:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['genero']!,
+                        labelText: "Gênero:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['endereco']!,
+                        labelText: "Endereço:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['cidade']!,
+                        labelText: "Cidade:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['uf']!,
+                        labelText: "UF:",
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 25),
+                      ),
+                      Text(
+                        "Documentos",
+                        style: TextStyle(
+                          color: tituloColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (_todosCamposPreenchidos()) {
-                              _editarPerfil(
-                                sexo: _sexoController.text,
-                                estadoCivil: _estadoCivilController.text,
-                                genero: _generoController.text,
-                                endereco: _enderecoController.text,
-                                cidade: _cidadeController.text,
-                                uf: _ufController.text,
-                                rg: _rgController.text,
-                                cns: _cnsController.text,
-                                tipoSang: _tipoSangController.text,
-                                ativFisica: _ativFisicaController.text,
-                                dieta: _dietaController.text,
-                                fumo: _fumoController.text,
-                                cirurgia: _cirurgiasController.text,
-                                remedio: _remedioController.text,
-                                doenca: _doencaController.text,
-                                alergia: _alergiaController.text,
-                                medico: _medicoController.text,
-                              );
-                              _limpar();
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => PerfilPage(),
-                                ),
-                              );
-                            } else {
-                              showSnackBar(
-                                  context: context,
-                                  mensagem:
-                                      "Todos os campos devem estar preenchidos!");
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: botaoColor,
-                            onPrimary: textoBotao,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['rg']!,
+                        labelText: "RG:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['cns']!,
+                        labelText: "CNS:",
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 25),
+                      ),
+                      Text(
+                        "Saúde",
+                        style: TextStyle(
+                          color: tituloColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['tipoSang']!,
+                        labelText: "Tipo Sanguíneo:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['ativFisica']!,
+                        labelText: "Atividade física:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['dieta']!,
+                        labelText: "Tipo de dieta:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['fumo']!,
+                        labelText: "Fumo:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['cirurgias']!,
+                        labelText: "Cirurgias:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['remedio']!,
+                        labelText: "Remédios:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['doenca']!,
+                        labelText: "Doenças:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['alergia']!,
+                        labelText: "Alergias:",
+                      ),
+                      _textCamposPerfil(
+                        controller: _controllers['medico']!,
+                        labelText: "Médicos responsáveis:",
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 50),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          _botoes(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                _limpar();
+                              },
+                              label: "Cancelar",
+                              icon: Icons.keyboard_return),
+                          Padding(
+                            padding: EdgeInsets.only(left: 40),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.save),
-                              SizedBox(
-                                width: 8.0,
-                              ),
-                              Text(
-                                "Salvar",
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                ),
-                              ),
-                            ],
+                          _botoes(
+                              onPressed: () {
+                                if (_todosCamposPreenchidos()) {
+                                  _editarPerfil(
+                                    sexo: _sexoController.text,
+                                    estadoCivil: _estadoCivilController.text,
+                                    genero: _generoController.text,
+                                    endereco: _enderecoController.text,
+                                    cidade: _cidadeController.text,
+                                    uf: _ufController.text,
+                                    rg: _rgController.text,
+                                    cns: _cnsController.text,
+                                    tipoSang: _tipoSangController.text,
+                                    ativFisica: _ativFisicaController.text,
+                                    dieta: _dietaController.text,
+                                    fumo: _fumoController.text,
+                                    cirurgia: _cirurgiasController.text,
+                                    remedio: _remedioController.text,
+                                    doenca: _doencaController.text,
+                                    alergia: _alergiaController.text,
+                                    medico: _medicoController.text,
+                                  );
+                                  _limpar();
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) => PerfilPage(),
+                                    ),
+                                  );
+                                } else {
+                                  showSnackBar(
+                                      context: context,
+                                      mensagem:
+                                          "Todos os campos devem estar preenchidos!");
+                                }
+                              },
+                              label: "Salvar",
+                              icon: Icons.save),
+                          Padding(
+                            padding: EdgeInsets.only(top: 50),
                           ),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 50),
-                    ),
-                  ],
-                ),
-              ),
-            )
+                        ],
+                      ),
+                    ],
+                  ),
+                )),
           ],
         ),
       ),
