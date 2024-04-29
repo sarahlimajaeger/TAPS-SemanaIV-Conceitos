@@ -17,6 +17,10 @@ class EditPerfilPage extends StatefulWidget {
 }
 
 class _EditPerfilPageState extends State<EditPerfilPage> {
+  
+  inal FirebasePerfilService perfilService = FirebasePerfilService();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   Color botaoColor = Color.fromARGB(255, 40, 78, 121);
   Color tituloColor = Color.fromARGB(255, 40, 78, 121);
   Color textColor = Colors.black;
@@ -24,23 +28,25 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
   Color fundoInfosColor = Color.fromARGB(255, 217, 217, 217);
   Color textoBotao = Colors.white;
 
-  final TextEditingController _sexoController = TextEditingController();
-  final TextEditingController _estadoCivilController = TextEditingController();
-  final TextEditingController _generoController = TextEditingController();
-  final TextEditingController _enderecoController = TextEditingController();
-  final TextEditingController _cidadeController = TextEditingController();
-  final TextEditingController _ufController = TextEditingController();
-  final TextEditingController _rgController = TextEditingController();
-  final TextEditingController _cnsController = TextEditingController();
-  final TextEditingController _tipoSangController = TextEditingController();
-  final TextEditingController _ativFisicaController = TextEditingController();
-  final TextEditingController _dietaController = TextEditingController();
-  final TextEditingController _fumoController = TextEditingController();
-  final TextEditingController _cirurgiasController = TextEditingController();
-  final TextEditingController _remedioController = TextEditingController();
-  final TextEditingController _doencaController = TextEditingController();
-  final TextEditingController _alergiaController = TextEditingController();
-  final TextEditingController _medicoController = TextEditingController();
+final Map<String, TextEditingController> _controllers = {
+    'sexo': TextEditingController(),
+    'estadoCivil': TextEditingController(),
+    'genero': TextEditingController(),
+    'endereco': TextEditingController(),
+    'cidade': TextEditingController(),
+    'uf': TextEditingController(),
+    'rg': TextEditingController(),
+    'cns': TextEditingController(),
+    'tipoSang': TextEditingController(),
+    'ativFisica': TextEditingController(),
+    'dieta': TextEditingController(),
+    'fumo': TextEditingController(),
+    'cirurgias': TextEditingController(),
+    'remedio': TextEditingController(),
+    'doenca': TextEditingController(),
+    'alergia': TextEditingController(),
+    'medico': TextEditingController(),
+  };
 
   void _limpar() {
     setState(() {
@@ -63,9 +69,6 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
       _medicoController.clear();
     });
   }
-
-  final FirebasePerfilService perfilService = FirebasePerfilService();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> _editarPerfil({
     required String sexo,
