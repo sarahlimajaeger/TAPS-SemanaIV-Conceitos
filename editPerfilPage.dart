@@ -105,6 +105,36 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
         .every((controller) => controller.text.isNotEmpty);
   }
 
+  //Método para construir os campos do perfil
+  Widget _textCamposPerfil({
+    required TextEditingController controller,
+    required String labelText,
+  }) {
+    return TextFormField(
+      controller: controller,
+      autofocus: true,
+      style: TextStyle(color: textColor),
+      decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: TextStyle(
+          color: tituloColor,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: textColor,
+          ),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: textColor,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,137 +171,29 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextFormField(
-                      controller: _sexoController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Sexo:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['sexo']!,
+                      labelText: "Sexo:",
                     ),
-                    TextFormField(
-                      controller: _estadoCivilController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Estado Civil:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['estadoCivil']!,
+                      labelText: "Estado Civil:",
                     ),
-                    TextFormField(
-                      controller: _generoController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Gênero:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['genero']!,
+                      labelText: "Gênero:",
                     ),
-                    TextFormField(
-                      controller: _enderecoController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Endereço:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['endereco']!,
+                      labelText: "Endereço:",
                     ),
-                    TextFormField(
-                      controller: _cidadeController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Cidade:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['cidade']!,
+                      labelText: "Cidade:",
                     ),
-                    TextFormField(
-                      controller: _ufController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "UF:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['uf']!,
+                      labelText: "UF:",
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 25),
@@ -284,49 +206,13 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextFormField(
-                      controller: _rgController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "RG:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['rg']!,
+                      labelText: "RG:",
                     ),
-                    TextFormField(
-                      controller: _cnsController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "CNS:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['cns']!,
+                      labelText: "CNS:",
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 25),
@@ -339,203 +225,41 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextFormField(
-                      controller: _tipoSangController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Tipo Sanguíneo:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['tipoSang']!,
+                      labelText: "Tipo Sanguíneo:",
                     ),
-                    TextFormField(
-                      controller: _ativFisicaController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Atividade física:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['ativFisica']!,
+                      labelText: "Atividade física:",
                     ),
-                    TextFormField(
-                      controller: _dietaController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Tipo de dieta:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['dieta']!,
+                      labelText: "Tipo de dieta:",
                     ),
-                    TextFormField(
-                      controller: _fumoController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Fumo:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['fumo']!,
+                      labelText: "Fumo:",
                     ),
-                    TextFormField(
-                      controller: _cirurgiasController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Cirurgias:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['cirurgias']!,
+                      labelText: "Cirurgias:",
                     ),
-                    TextFormField(
-                      controller: _remedioController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Remédios:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['remedio']!,
+                      labelText: "Remédios:",
                     ),
-                    TextFormField(
-                      controller: _doencaController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Doenças:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['doenca']!,
+                      labelText: "Doenças:",
                     ),
-                    TextFormField(
-                      controller: _alergiaController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Alergias:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['alergia']!,
+                      labelText: "Alergias:",
                     ),
-                    TextFormField(
-                      controller: _medicoController,
-                      autofocus: true,
-                      style: TextStyle(color: textColor),
-                      decoration: InputDecoration(
-                        labelText: "Médicos responsáveis:",
-                        labelStyle: TextStyle(
-                            color: tituloColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: textColor,
-                          ),
-                        ),
-                      ),
+                    _textCamposPerfil(
+                      controller: _controllers['medico']!,
+                      labelText: "Médicos responsáveis:",
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 50),
