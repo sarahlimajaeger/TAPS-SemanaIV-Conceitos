@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:carteira_saude/model/usuario/usuario.dart';
 import 'package:carteira_saude/pages/perfil/editPerfilPage.dart';
+import 'package:carteira_saude/pages/components/appBarComponent.dart';
 import 'package:carteira_saude/services/perfilServices/firebase_perfil_services.dart';
 import 'package:carteira_saude/storage/storage_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -107,28 +108,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: fundoColor,
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Image.asset(
-              'assets/logoCabecalho.png',
-              width: 100, // Ajuste o tamanho conforme necessário
-              height: 30,
-            ),
-          ),
-        ],
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: tituloColor,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
+      appBar: appBarComponent(),
       body: SingleChildScrollView(
         child: Column(
           children: [
