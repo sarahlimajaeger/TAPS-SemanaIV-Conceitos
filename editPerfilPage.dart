@@ -49,25 +49,7 @@ final Map<String, TextEditingController> _controllers = {
   };
 
   void _limpar() {
-    setState(() {
-      _sexoController.clear();
-      _estadoCivilController.clear();
-      _generoController.clear();
-      _enderecoController.clear();
-      _cidadeController.clear();
-      _ufController.clear();
-      _rgController.clear();
-      _cnsController.clear();
-      _tipoSangController.clear();
-      _ativFisicaController.clear();
-      _dietaController.clear();
-      _fumoController.clear();
-      _cirurgiasController.clear();
-      _remedioController.clear();
-      _doencaController.clear();
-      _alergiaController.clear();
-      _medicoController.clear();
-    });
+    _controllers.values.forEach((controller) => controller.clear());
   }
 
   Future<void> _editarPerfil({
