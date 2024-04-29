@@ -17,8 +17,7 @@ class EditPerfilPage extends StatefulWidget {
 }
 
 class _EditPerfilPageState extends State<EditPerfilPage> {
-  
-  inal FirebasePerfilService perfilService = FirebasePerfilService();
+  final FirebasePerfilService perfilService = FirebasePerfilService();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Color botaoColor = Color.fromARGB(255, 40, 78, 121);
@@ -28,7 +27,7 @@ class _EditPerfilPageState extends State<EditPerfilPage> {
   Color fundoInfosColor = Color.fromARGB(255, 217, 217, 217);
   Color textoBotao = Colors.white;
 
-final Map<String, TextEditingController> _controllers = {
+  final Map<String, TextEditingController> _controllers = {
     'sexo': TextEditingController(),
     'estadoCivil': TextEditingController(),
     'genero': TextEditingController(),
@@ -101,24 +100,8 @@ final Map<String, TextEditingController> _controllers = {
   }
 
   bool _todosCamposPreenchidos() {
-    // Verifique se todos os campos estão preenchidos com strings
-    return _sexoController.text.isNotEmpty &&
-        _estadoCivilController.text.isNotEmpty &&
-        _generoController.text.isNotEmpty &&
-        _enderecoController.text.isNotEmpty &&
-        _cidadeController.text.isNotEmpty &&
-        _ufController.text.isNotEmpty &&
-        _rgController.text.isNotEmpty &&
-        _cnsController.text.isNotEmpty &&
-        _tipoSangController.text.isNotEmpty &&
-        _ativFisicaController.text.isNotEmpty &&
-        _dietaController.text.isNotEmpty &&
-        _fumoController.text.isNotEmpty &&
-        _cirurgiasController.text.isNotEmpty &&
-        _remedioController.text.isNotEmpty &&
-        _doencaController.text.isNotEmpty &&
-        _alergiaController.text.isNotEmpty &&
-        _medicoController.text.isNotEmpty;
+    return _controllers.values
+        .every((controller) => controller.text.isNotEmpty);
   }
 
   @override
